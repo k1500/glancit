@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Glancit 설정</title>
+  <style>
+    body {
+      padding: 25px;
+      font-family: system-ui;
+      max-width: 480px;
+      background: #f8f9fa;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      font-size: 1.4em;
+      color: #1a73e8;
+      margin-top: 0;
+    }
+
+    .section {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+
+    select,
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #save {
+      background: #1a73e8;
+      color: white;
+    }
+
+    #test {
+      background: #f1f3f4;
+      color: #3c4043;
+      border: 1px solid #dadce0;
+    }
+
+    .status {
+      margin-top: 15px;
+      font-size: 0.9em;
+      font-weight: bold;
+    }
+
+    .help {
+      font-size: 0.8em;
+      color: #666;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #202124;
+        color: #e8eaed;
+      }
+
+      .card {
+        background: #292a2d;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        color: #8ab4f8;
+      }
+
+      .section {
+        border-bottom: 1px solid #3c4043;
+      }
+
+      select,
+      input,
+      textarea {
+        background: #202124;
+        color: #e8eaed;
+        border: 1px solid #5f6368;
+      }
+
+      #test {
+        background: #3c4043;
+        color: #e8eaed;
+        border: 1px solid #5f6368;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1 data-i18n="title">Glancit 설정</h1>
+
+    <div class="section">
+      <label data-i18n="engine">번역 엔진</label>
+      <select id="engine">
+        <option value="google">Google Translate</option>
+        <option value="gemini">Gemini API</option>
+      </select>
+    </div>
+
+    <div class="section" id="gemini-box" style="display:none;">
+      <label data-i18n="apiKey">Gemini API Key</label>
+      <input type="text" id="api-key" placeholder="키를 여기에 붙여넣으세요" data-i18n-placeholder="apiKeyPlaceholder">
+      <label style="margin-top: 10px;" data-i18n="model">모델 선택</label>
+      <select id="model">
+        <option value="gemini-3-flash-preview">Gemini 3 Flash Preview</option>
+        <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <label data-i18n="uiLang">UI 언어 (Locale)</label>
+      <select id="lang">
+        <option value="ko">한국어 (Korean)</option>
+        <option value="en">English (영어)</option>
+        <option value="ja">日本語 (Japanese)</option>
+      </select>
+    </div>
+
+    <div class="section">
+      <label data-i18n="customLangs">다국어 번역 버튼 (쉼표로 구분)</label>
+      <input type="text" id="custom-langs" placeholder="예: ko,en 혹은 ko,en,ja"
+        data-i18n-placeholder="customLangsPlaceholder">
+      <div class="help" data-i18n="customLangsHelp">입력한 언어 순서대로 한, 영, 일 버튼이 생성됩니다.</div>
+    </div>
+
+    <div class="section">
+      <label data-i18n="shortcut">번역 단축키</label>
+      <input type="text" id="shortcut" placeholder="이곳을 클릭 후 원하는 단축키를 누르세요" readonly
+        data-i18n-placeholder="shortcutPlaceholder">
+      <div class="help" data-i18n="shortcutHelp">텍스트 선택 후 지정한 단축키를 누르면 번역됩니다. 지우려면 Backspace를 누르세요.</div>
+      <div style="margin-top: 10px; display: flex; align-items: center;">
+        <input type="checkbox" id="disable-auto-popup" style="width: auto; margin-right: 8px;">
+        <label for="disable-auto-popup" data-i18n="disableAutoPopup"
+          style="margin-bottom: 0; font-weight: normal; font-size: 0.9em;">드래그 시 팝업 띄우지 않기 (단축키로만 실행)</label>
+      </div>
+    </div>
+
+    <div class="section">
+      <label data-i18n="exclude">번역 제외 도메인</label>
+      <textarea id="exclude" rows="2" placeholder="github.com, example.net"
+        data-i18n-placeholder="excludePlaceholder"></textarea>
+    </div>
+
+    <div class="section">
+      <label data-i18n="displayMode">번역 표시 방식</label>
+      <select id="display-mode">
+        <option value="popup" selected data-i18n="displayPopup">팝업으로 표시 (Popup)</option>
+        <option value="inline" data-i18n="displayInline">페이지 내에 번역 내용 추가 (Inline)</option>
+      </select>
+    </div>
+
+    <div class="btn-group">
+      <button id="save" data-i18n="save">설정 저장</button>
+      <button id="test" data-i18n="test">연결 테스트</button>
+    </div>
+    <div id="status" class="status"></div>
+  </div>
+  <script src="options.js"></script>
+</body>
+
+</html>
