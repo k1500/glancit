@@ -5,7 +5,7 @@ let gSettings = {
   translationEngine: "google",
   defaultTargetLang: "ko",
   geminiApiKey: "",
-  geminiModel: "gemini-2.5-flash",
+  geminiModel: "gemini-flash-lite-latest",
   displayMode: "popup",
   customLangs: "ko,en",
   shortcutKey: "",
