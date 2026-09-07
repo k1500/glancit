@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Glancit (Google/Gemini)",
-  "version": "1.7",
+  "version": "1.7.1",
   "description": "모든 웹사이트에서 드래그 번역을 지원하는 심플한 웹 번역기입니다.",
   "icons": {
     "16": "icon_48.png",
