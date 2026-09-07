@@ -1,21 +1,15 @@
 {
   "manifest_version": 3,
   "name": "Glancit (Google/Gemini)",
-  "version": "1.6",
+  "version": "1.7",
   "description": "모든 웹사이트에서 드래그 번역을 지원하는 심플한 웹 번역기입니다.",
   "icons": {
     "16": "icon_48.png",
     "48": "icon_48.png",
     "128": "icon_128.png"
   },
-  "permissions": [
-    "storage",
-    "scripting"
-  ],
-  "host_permissions": [
-    "https://*/*",
-    "http://*/*"
-  ],
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["https://*/*", "http://*/*"],
   "action": {
     "default_title": "번역 설정"
   },
@@ -25,15 +19,9 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "content.js"
-      ],
-      "css": [
-        "content.css"
-      ],
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
       "run_at": "document_idle",
       "all_frames": true
     }
